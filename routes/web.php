@@ -28,7 +28,7 @@ use Inertia\Inertia;
 
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/hello', [IndexController::class, 'show']);
-Route::resource('listing', ListingController::class)->only(['index', 'show']);
+Route::resource('listing', ListingController::class)->only(['index', 'show','create']);
 
 Route::middleware([
     'auth:sanctum',

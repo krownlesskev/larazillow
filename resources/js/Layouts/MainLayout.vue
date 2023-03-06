@@ -15,3 +15,10 @@ setInterval(() => {
     timer.value++;
 }, 1000);
 </script>
+
+<style>
+body {
+    background-color: #202124;
+    color: #fff;
+}
+</style>
