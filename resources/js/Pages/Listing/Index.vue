@@ -1,16 +1,16 @@
 <template>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-4">
         <div
+            class="hover:scale-105 ease-in-out duration-500"
             v-for="(listing, index) in listings"
             :key="listing.id"
-            class="border dark:border-white border-black rounded w-auto flex flex-col p-4 m-4 hover:scale-105 ease-in-out duration-500"
         >
             <div>
                 <Link :href="route('listing.show', { listing: listing.id })">
                     <ListingAddress :listing="listing" />
                 </Link>
             </div>
-            <div class="grid grid-cols-2">
+            <div class="grid grid-cols-2 space-x-4 mt-4">
                 <Link
                     class="border rounded border-black dark:border-black dark:bg-white dark:text-black hover:bg-black hover:text-white"
                     :href="route('listing.edit', { listing: listing.id })"
