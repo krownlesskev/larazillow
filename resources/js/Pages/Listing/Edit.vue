@@ -1,5 +1,9 @@
 <template>
-    <form @submit.prevent="form.put(`/listing/${props.listing.id}`)">
+    <form
+        @submit.prevent="
+            form.put(route('listing.update', { listing: listing.id }))
+        "
+    >
         <div>
             <div>
                 <label>Beds</label>

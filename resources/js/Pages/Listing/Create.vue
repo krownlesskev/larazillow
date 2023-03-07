@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="form.post('/listing')">
+    <form @submit.prevent="form.post(route('listing.store'))">
         <div>
             <div>
                 <label>Beds</label>
