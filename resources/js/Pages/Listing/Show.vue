@@ -37,7 +37,7 @@
 
                     <div class="text-gray-600 dark:text-gray-300 mt-2">
                         <div class="text-gray-400">Your monthly payments</div>
-                        <Price :price="monthlyPayments" class="text-3xl" />
+                        <Price :price="monthlyPayment" class="text-3xl" />
                     </div>
                 </div>
             </Box>
@@ -51,6 +51,8 @@ import Box from "@/Components/UI/Box.vue";
 import Price from "@/Components/UI/Price.vue";
 import { ref, computed } from "vue";
 
+import { useMonthlyPayment } from "@/Composables/useMonthlyPayment";
+
 const interestRate = ref(2.5);
 const duration = ref(25);
 
@@ -58,18 +60,13 @@ const props = defineProps({
     listing: Object,
 });
 
-const monthlyPayments = computed(() => {
-    const principle = props.listing.price;
-    const monthlyInterest = interestRate.value / 100 / 12;
-    const numberOfPaymentMonths = duration.value * 12;
+const { monthlyPayment } = useMonthlyPayment(
+    props.listing.price,
+    interestRate,
+    duration
+);
 
-    return (
-        (principle *
-            monthlyInterest *
-            Math.pow(1 + monthlyInterest, numberOfPaymentMonths)) /
-        (Math.pow(1 + monthlyInterest, numberOfPaymentMonths) - 1)
-    );
-});
+console.clear();
 </script>
 
 <script>
