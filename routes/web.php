@@ -26,8 +26,7 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::get('/', [IndexController::class, 'index']);
-Route::get('/hello', [IndexController::class, 'show']);
+Route::get('/', [ListingController::class, 'index']);
 Route::resource('listing', ListingController::class)->only(['index', 'show','create','store']);
 
 Route::middleware([

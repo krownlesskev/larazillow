@@ -1,5 +1,4 @@
 <template>
-    <div>Listing</div>
     <div v-for="(listing, index) in listings" :key="listing.id">
         <Link :href="`/listing/${listing.id}`">
             <ListingAddress :listing="listing" />

@@ -1,17 +1,26 @@
 <template>
-    <form @submit.prevent="create">
+    <form @submit.prevent="form.post('/listing')">
         <div>
             <div>
                 <label>Beds</label>
                 <input v-model.number="form.beds" type="text" />
+                <div class="error" v-if="form.errors.beds">
+                    {{ form.errors.beds }}
+                </div>
             </div>
             <div>
                 <label>Baths</label>
                 <input v-model.number="form.baths" type="text" />
+                <div class="error" v-if="form.errors.baths">
+                    {{ form.errors.baths }}
+                </div>
             </div>
             <div>
                 <label>Area</label>
                 <input v-model.number="form.area" type="text" />
+                <div class="error" v-if="form.errors.area">
+                    {{ form.errors.area }}
+                </div>
             </div>
             <div>
                 <label>City</label>
@@ -20,14 +29,23 @@
                     type="text"
                     placeholder="City Name"
                 />
+                <div class="error" v-if="form.errors.city">
+                    {{ form.errors.city }}
+                </div>
             </div>
             <div>
                 <label>Postal Code</label>
                 <input v-model="form.code" type="text" />
+                <div class="error" v-if="form.errors.code">
+                    {{ form.errors.code }}
+                </div>
             </div>
             <div>
                 <label>Street #</label>
                 <input v-model="form.street_nr" type="text" />
+                <div class="error" v-if="form.errors.street_nr">
+                    {{ form.errors.street_nr }}
+                </div>
             </div>
             <div>
                 <label>Street</label>
@@ -36,10 +54,16 @@
                     type="text"
                     placeholder="Street Name"
                 />
+                <div class="error" v-if="form.errors.street">
+                    {{ form.errors.street }}
+                </div>
             </div>
             <div>
                 <label>Price</label>
                 <input v-model.number="form.price" type="text" />
+                <div class="error" v-if="form.errors.price">
+                    {{ form.errors.price }}
+                </div>
             </div>
             <div>
                 <button type="submit">Create</button>
@@ -49,21 +73,18 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
-import { router } from "@inertiajs/core";
+import { useForm } from "@inertiajs/vue3";
 
-const form = reactive({
-    beds: 0,
-    baths: 0,
-    area: 0,
+const form = useForm({
+    beds: null,
+    baths: null,
+    area: null,
     city: null,
-    code: 0,
-    street_nr: 0,
+    code: null,
+    street_nr: null,
     street: null,
-    price: 0,
+    price: null,
 });
-
-const create = () => router.post("/listing", form);
 </script>
 <script>
 import MainLayout from "../../Layouts/MainLayout.vue";
@@ -79,5 +100,9 @@ label {
 
 div {
     padding: 2px;
+}
+
+.error {
+    color: red;
 }
 </style>
