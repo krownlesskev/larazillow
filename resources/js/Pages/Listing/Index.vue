@@ -1,12 +1,11 @@
 <template>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-4">
-        <div
-            class="hover:scale-105 ease-in-out duration-500"
-            v-for="(listing, index) in listings"
-            :key="listing.id"
-        >
+        <Box v-for="(listing, index) in listings" :key="listing.id">
             <div>
                 <Link :href="route('listing.show', { listing: listing.id })">
+                    <div class="flex items-center">
+                        <Price class="text-2xl" :price="listing.price" />
+                    </div>
                     <ListingAddress :listing="listing" />
                 </Link>
             </div>
@@ -26,13 +25,15 @@
                 >
             </div>
             <!-- <div class="grid justify-items-end"></div> -->
-        </div>
+        </Box>
     </div>
 </template>
 
 <script setup>
 import { Link } from "@inertiajs/vue3";
-import ListingAddress from "../../Components/ListingAddress.vue";
+import ListingAddress from "@/Components/ListingAddress.vue";
+import Price from "@/Components/UI/Price.vue";
+import Box from "@/Components/UI/Box.vue";
 defineProps({
     listings: Array,
 });

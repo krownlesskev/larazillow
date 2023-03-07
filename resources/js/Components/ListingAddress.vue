@@ -1,9 +1,5 @@
 <template>
-    <div
-        class="border dark:border-white border-black rounded flex flex-col p-4"
-    >
-        <Price class="text-3xl" :price="listing.price" />
-
+    <div>
         <span> {{ listing.street_nr }} {{ listing.street }}, </span>
         <span>
             {{ listing.city }}
@@ -17,7 +13,6 @@
 </template>
 
 <script setup>
-import Price from "@/Components/UI/Price.vue";
 defineProps({
     listing: Object,
 });
