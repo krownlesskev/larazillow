@@ -6,9 +6,7 @@
                 :href="route('listing.index')"
                 >Luminary Listings</Link
             >
-            <Link
-                :href="route('listing.create')"
-                class="rounded p-1 bg-amber-100 hover:bg-amber-200 text-black hover:scale-110 ease-in-out duration-500"
+            <Link :href="route('listing.create')" class="button"
                 >Create Listing
             </Link>
         </div>

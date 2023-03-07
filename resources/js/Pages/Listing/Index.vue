@@ -12,13 +12,13 @@
             </div>
             <div class="grid grid-cols-2 space-x-4 mt-4">
                 <Link
-                    class="border rounded border-black dark:border-black dark:bg-white dark:text-black hover:bg-black hover:text-white"
+                    class="button"
                     :href="route('listing.edit', { listing: listing.id })"
                     as="button"
                     >Edit</Link
                 >
                 <Link
-                    class="border rounded border-black dark:border-black dark:bg-white dark:text-black hover:bg-black hover:text-white"
+                    class="button"
                     method="DELETE"
                     :href="route('listing.destroy', { listing: listing.id })"
                     as="button"
