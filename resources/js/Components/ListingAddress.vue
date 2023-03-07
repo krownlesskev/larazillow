@@ -7,6 +7,11 @@
         <span>
             {{ listing.city }}
         </span>
+        <ul class="flex justify-evenly">
+            <li>{{ listing.beds }} bd</li>
+            <li>{{ listing.baths }} ba</li>
+            <li>{{ listing.area }} sf</li>
+        </ul>
     </div>
 </template>
 
