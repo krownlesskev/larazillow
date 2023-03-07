@@ -1,14 +1,13 @@
 <template>
-    <div class="mb-4 p-4 flex items-center space-x-4 bg-black">
-        <div class="text-amber-100 text-2xl">Luminary Listings</div>
+    <div class="mb-4 p-4 flex items-center justify-between bg-black">
         <Link
+            class="text-amber-100 text-2xl hover:translate-x-3 ease-in-out duration-500"
             :href="route('listing.index')"
-            class="border rounded p-1 border-white hover:bg-white hover:text-black text-white"
-            >Listings
-        </Link>
+            >Luminary Listings</Link
+        >
         <Link
             :href="route('listing.create')"
-            class="border rounded p-1 border-white hover:bg-white hover:text-black text-white"
+            class="rounded p-1 bg-amber-100 hover:bg-amber-200 text-black hover:scale-110 ease-in-out duration-500"
             >Create Listing
         </Link>
         <div v-if="flash.success" class="bg-lime-600 text-white">

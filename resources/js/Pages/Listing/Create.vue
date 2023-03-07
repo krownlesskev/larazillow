@@ -102,14 +102,14 @@
 import { useForm } from "@inertiajs/vue3";
 
 const form = useForm({
-    beds: null,
-    baths: null,
-    area: null,
+    beds: 0,
+    baths: 0,
+    area: 15,
     city: null,
-    code: null,
-    street_nr: null,
+    code: "123 456",
+    street_nr: 0,
     street: null,
-    price: null,
+    price: 0,
 });
 </script>
 <script>
