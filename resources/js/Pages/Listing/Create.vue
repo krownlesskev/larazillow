@@ -1,37 +1,45 @@
 <template>
-    <form action="">
+    <form @submit.prevent="create">
         <div>
             <div>
                 <label>Beds</label>
-                <input type="text" />
+                <input v-model.number="form.beds" type="text" />
             </div>
             <div>
                 <label>Baths</label>
-                <input type="text" />
+                <input v-model.number="form.baths" type="text" />
             </div>
             <div>
                 <label>Area</label>
-                <input type="text" />
+                <input v-model.number="form.area" type="text" />
             </div>
             <div>
                 <label>City</label>
-                <input type="text" />
+                <input
+                    v-model="form.city"
+                    type="text"
+                    placeholder="City Name"
+                />
             </div>
             <div>
                 <label>Postal Code</label>
-                <input type="text" />
+                <input v-model="form.code" type="text" />
             </div>
             <div>
                 <label>Street #</label>
-                <input type="text" />
+                <input v-model="form.street_nr" type="text" />
             </div>
             <div>
                 <label>Street</label>
-                <input type="text" />
+                <input
+                    v-model="form.street"
+                    type="text"
+                    placeholder="Street Name"
+                />
             </div>
             <div>
                 <label>Price</label>
-                <input type="text" />
+                <input v-model.number="form.price" type="text" />
             </div>
             <div>
                 <button type="submit">Create</button>
@@ -41,7 +49,21 @@
 </template>
 
 <script setup>
-import { Link } from "@inertiajs/vue3";
+import { reactive } from "vue";
+import { router } from "@inertiajs/core";
+
+const form = reactive({
+    beds: 0,
+    baths: 0,
+    area: 0,
+    city: null,
+    code: 0,
+    street_nr: 0,
+    street: null,
+    price: 0,
+});
+
+const create = () => router.post("/listing", form);
 </script>
 <script>
 import MainLayout from "../../Layouts/MainLayout.vue";
