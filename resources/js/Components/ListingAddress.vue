@@ -2,9 +2,8 @@
     <div
         class="border dark:border-white border-black rounded flex flex-col p-4"
     >
-        <span class="text-black dark:text-amber-100 text-4xl"
-            >${{ listing.price.toLocaleString("en-us") }}</span
-        >
+        <Price class="text-3xl" :price="listing.price" />
+
         <span> {{ listing.street_nr }} {{ listing.street }}, </span>
         <span>
             {{ listing.city }}
@@ -18,6 +17,7 @@
 </template>
 
 <script setup>
+import Price from "@/Components/UI/Price.vue";
 defineProps({
     listing: Object,
 });
