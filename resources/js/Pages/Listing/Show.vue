@@ -8,7 +8,10 @@
             </span>
         </div>
         <div class="md:col-span-5 flex flex-col gap-4">
-            <ListingAddress :listing="listing" />
+            <Box class="flex flex-col gap-1">
+                <Price class="text-2xl" :price="listing.price" />
+                <ListingAddress :listing="listing" />
+            </Box>
             <Box>
                 <template #header> Monthly Payments </template>
                 <div>
@@ -37,7 +40,26 @@
 
                     <div class="text-gray-600 dark:text-gray-300 mt-2">
                         <div class="text-gray-400">Your monthly payments</div>
-                        <Price :price="monthlyPayment" class="text-3xl" />
+                        <Price :price="monthlyPayment" class="text-2xl" />
+                    </div>
+
+                    <div class="mt-2 text-gray-500">
+                        <div class="flex justify-between">
+                            <div>Total Paid:</div>
+                            <div><Price :price="totalPaid" /></div>
+                        </div>
+                    </div>
+                    <div class="mt-2 text-gray-500">
+                        <div class="flex justify-between">
+                            <div>Principal Paid:</div>
+                            <div><Price :price="listing.price" /></div>
+                        </div>
+                    </div>
+                    <div class="mt-2 text-gray-500">
+                        <div class="flex justify-between">
+                            <div>Total Interest:</div>
+                            <div><Price :price="totalInterest" /></div>
+                        </div>
                     </div>
                 </div>
             </Box>
@@ -60,7 +82,7 @@ const props = defineProps({
     listing: Object,
 });
 
-const { monthlyPayment } = useMonthlyPayment(
+const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
     props.listing.price,
     interestRate,
     duration
