@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomRequest;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 
@@ -69,20 +70,10 @@ class ListingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Listing $listing)
+    public function update(CustomRequest $request, Listing $listing)
     {
-        $listing->update(
-            $request->validate([
-                'beds' => 'required|integer|min:1|max:20',
-                'baths' => 'required|integer|min:1|max:20',
-                'area' => 'required|integer|min:15|max:1500',
-                'city' => 'required',
-                'code' => 'required',
-                'street_nr' => 'required|min:1|max:1000',
-                'street' => 'required',
-                'price' => 'required|integer|min:1|max:20000000',
-            ])
-        );
+        $listing->update($request->only('beds', 'baths','area','city','code','street_nr','street','price'));
+
 
         return redirect()->route('listing.index')->with('success','Listing Updated!');
     }
