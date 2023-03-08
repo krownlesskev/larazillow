@@ -1,5 +1,5 @@
 <template>
-    <span> ${{ formattedPrice }}</span>
+    <span> {{ formattedPrice }}</span>
 </template>
 
 <script setup>
@@ -10,6 +10,9 @@ const props = defineProps({
 });
 
 const formattedPrice = computed(() =>
-    Number(props.price).toLocaleString("en-US")
+    Number(props.price).toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD",
+    })
 );
 </script>
