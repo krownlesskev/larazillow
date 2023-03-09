@@ -19,8 +19,11 @@
                     >Logout</Link
                 >
             </div>
-            <div v-else>
+            <div v-else class="flex gap-4">
                 <Link :href="route('login')" class="btn-primary">Login </Link>
+                <Link :href="route('user-account.create')" class="btn-primary"
+                    >Register
+                </Link>
             </div>
         </div>
         <main class="container mx-auto p-4 w-full">
