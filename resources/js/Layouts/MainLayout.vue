@@ -6,9 +6,16 @@
                 :href="route('listing.index')"
                 >Luminary Listings</Link
             >
-            <Link :href="route('listing.create')" class="btn-primary"
-                >Create Listing
-            </Link>
+            <div v-if="user" class="flex gap-4 items-center">
+                <span class="text-sm text-gray-300">{{ user.name }}</span>
+                <Link :href="route('listing.create')" class="btn-primary"
+                    >Create Listing
+                </Link>
+                <Link class="btn-logout" :href="route('logout')">Logout</Link>
+            </div>
+            <div v-else>
+                <Link :href="route('login')" class="btn-primary">Login </Link>
+            </div>
         </div>
         <main class="container mx-auto p-4 w-full">
             <div v-if="flash.success" class="flex justify-center">
@@ -28,5 +35,6 @@ import { Link } from "@inertiajs/vue3";
 
 defineProps({
     flash: Object,
+    user: Object,
 });
 </script>
