@@ -18,29 +18,13 @@ use Inertia\Inertia;
 |
 */
 
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
 
 Route::get('/', [ListingController::class, 'index']);
 Route::resource('listing', ListingController::class);
 
+// Auth
 Route::get('login', [AuthController::class,'create'])->name('login');
 Route::post('login', [AuthController::class,'store'])->name('login.store');
 Route::delete('logout', [AuthController::class,'destroy'])->name('logout');
 
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified',
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return Inertia::render('Dashboard');
-//     })->name('dashboard');
-// });
 
