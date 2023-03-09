@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ListingController;
 use Illuminate\Foundation\Application;
@@ -29,13 +30,17 @@ use Inertia\Inertia;
 Route::get('/', [ListingController::class, 'index']);
 Route::resource('listing', ListingController::class);
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
-});
+Route::get('login', [AuthController::class,'create'])->name('login');
+Route::post('login', [AuthController::class,'store'])->name('login.store');
+Route::delete('logout', [AuthController::class,'destroy'])->name('logout');
+
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return Inertia::render('Dashboard');
+//     })->name('dashboard');
+// });
 

@@ -13,13 +13,13 @@
         </div>
         <div class="grid grid-cols-2 space-x-4 mt-4">
             <Link
-                class="button"
+                class="btn-primary"
                 :href="route('listing.edit', { listing: listing.id })"
                 as="button"
                 >Edit</Link
             >
             <Link
-                class="button"
+                class="btn-primary"
                 method="DELETE"
                 :href="route('listing.destroy', { listing: listing.id })"
                 as="button"

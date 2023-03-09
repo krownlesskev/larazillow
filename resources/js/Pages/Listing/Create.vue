@@ -69,7 +69,7 @@
                 </div>
             </div>
             <div class="col-span-6">
-                <button class="button" type="submit">Create</button>
+                <button class="btn-primary" type="submit">Create</button>
             </div>
         </div>
     </form>
@@ -88,10 +88,4 @@ const form = useForm({
     street: null,
     price: 0,
 });
-</script>
-<script>
-import MainLayout from "../../Layouts/MainLayout.vue";
-export default {
-    layout: MainLayout,
-};
 </script>

@@ -6,15 +6,19 @@
                 :href="route('listing.index')"
                 >Luminary Listings</Link
             >
-            <Link :href="route('listing.create')" class="button"
+            <Link :href="route('listing.create')" class="btn-primary"
                 >Create Listing
             </Link>
         </div>
-        <div v-if="flash.success" class="flex justify-center">
-            <span class="bg-lime-500 font-bold text-white max-w-sm p-2 rounded">
-                {{ flash.success }}
-            </span>
-        </div>
+        <main class="container mx-auto p-4 w-full">
+            <div v-if="flash.success" class="flex justify-center">
+                <span
+                    class="bg-lime-500 font-bold text-white max-w-sm p-2 rounded"
+                >
+                    {{ flash.success }}
+                </span>
+            </div>
+        </main>
     </div>
     <slot></slot>
 </template>
