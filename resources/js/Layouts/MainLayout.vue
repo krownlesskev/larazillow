@@ -11,7 +11,13 @@
                 <Link :href="route('listing.create')" class="btn-primary"
                     >Create Listing
                 </Link>
-                <Link class="btn-logout" :href="route('logout')">Logout</Link>
+                <Link
+                    class="btn-logout"
+                    method="DELETE"
+                    :href="route('logout')"
+                    as="button"
+                    >Logout</Link
+                >
             </div>
             <div v-else>
                 <Link :href="route('login')" class="btn-primary">Login </Link>
