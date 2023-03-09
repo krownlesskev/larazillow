@@ -18,6 +18,8 @@ use Inertia\Inertia;
 |
 */
 
+// We use this index for testing
+// Route::get('/', [IndexController::class, 'index']);
 
 Route::get('/', [ListingController::class, 'index']);
 Route::resource('listing', ListingController::class);
