@@ -5,10 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CustomRequest;
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
 {
-    
+
+    public function __construct()
+    {
+        $this->authorize(Listing::class, 'listing');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -24,6 +29,7 @@ class ListingController extends Controller
      */
     public function create()
     {
+        // $this->authorize('create', Listing::class);
         return inertia('Listing/Create');
     }
 
@@ -31,8 +37,8 @@ class ListingController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   
-        $request->user()->listings()->create(            
+    {
+        $request->user()->listings()->create(
             $request->validate([
                 'beds' => 'required|integer|min:1|max:20',
                 'baths' => 'required|integer|min:1|max:20',
@@ -45,7 +51,7 @@ class ListingController extends Controller
             ])
         );
 
-        return redirect()->route('listing.index')->with('success','Listing Created!');
+        return redirect()->route('listing.index')->with('success', 'Listing Created!');
     }
 
     /**
@@ -53,6 +59,8 @@ class ListingController extends Controller
      */
     public function show(Listing $listing)
     {
+        // $isAuthenticated = Auth::user()->can('view', $listing);
+        // $this->authorize('view', $listing);
         return inertia('Listing/Show', [
             'listing' => $listing
         ]);
@@ -73,10 +81,10 @@ class ListingController extends Controller
      */
     public function update(CustomRequest $request, Listing $listing)
     {
-        $listing->update($request->only('beds', 'baths','area','city','code','street_nr','street','price'));
+        $listing->update($request->only('beds', 'baths', 'area', 'city', 'code', 'street_nr', 'street', 'price'));
 
 
-        return redirect()->route('listing.index')->with('success','Listing Updated!');
+        return redirect()->route('listing.index')->with('success', 'Listing Updated!');
     }
 
     /**
@@ -86,6 +94,6 @@ class ListingController extends Controller
     {
         $listing->delete();
 
-        return redirect()->back()->with('success','Listing Deleted');
+        return redirect()->back()->with('success', 'Listing Deleted');
     }
 }
