@@ -31,8 +31,8 @@ class ListingController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        Listing::create(
+    {   
+        $request->user()->listings()->create(            
             $request->validate([
                 'beds' => 'required|integer|min:1|max:20',
                 'baths' => 'required|integer|min:1|max:20',

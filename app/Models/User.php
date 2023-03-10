@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+
 
 class User extends Authenticatable
 {
@@ -61,10 +63,19 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function password(): Attribute {
+    public function password(): Attribute
+    {
         return Attribute::make(
             get: fn ($value) => $value,
             set: fn ($value) => Hash::make($value),
+        );
+    }
+
+    public function listings(): HasMany
+    {
+        return $this->hasMany(
+            \App\Models\Listing::class,
+            'by_user_id'
         );
     }
 }
