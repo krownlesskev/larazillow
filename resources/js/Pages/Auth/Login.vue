@@ -29,6 +29,7 @@
             </div>
             <div class="mt-8">
                 <button class="btn-primary w-full" type="submit">Login</button>
+
                 <div class="mt-2 text-center w-full">
                     <Link class="w-full" :href="route('user-account.create')"
                         >Need an account? Click here.</Link

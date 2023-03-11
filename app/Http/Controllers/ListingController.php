@@ -12,7 +12,7 @@ class ListingController extends Controller
 
     public function __construct()
     {
-        $this->authorize(Listing::class, 'listing');
+        $this->authorizeResource(Listing::class, 'listing');
     }
     /**
      * Display a listing of the resource.

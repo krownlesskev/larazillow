@@ -8,34 +8,36 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    public function create(){
+    public function create()
+    {
 
         return inertia('Auth/Login');
     }
 
-    public function store(Request $request){
-        
-       if(!Auth::attempt($request->validate([
+    public function store(Request $request)
+    {
+
+        if (!Auth::attempt($request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string'
-        ]),true)){
+        ]), true)) {
             throw ValidationException::withMessages([
                 'email' => 'Authentication Failed',
             ]);
         }
         $request->session()->regenerate();
-        
+
         return redirect()->intended('/listing');
     }
 
-    public function destroy(Request $request){
-        
+    public function destroy(Request $request)
+    {
+
         Auth::logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return redirect()->route('listing.index');
-
     }
 }
